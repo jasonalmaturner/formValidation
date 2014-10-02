@@ -2,20 +2,80 @@
 	<div class='login-signup-menu'>
 		<ul>
 			<!-- Links for toggeling login and signup forms -->
-			<li>Login</li>
-			<li>Signup</li>
+			<li ng-click="loginToggle()">Login</li>
+			<li ng-click="signupToggle()">Signup</li>
 		</ul>
 	</div>
 	<div class='forms-container'>
 		
 		<!-- Login Form -->
-		<div class='login-signup-form' ng-controller='loginCtrl'>
+		<div class='login-signup-form' ng-controller='loginCtrl' ng-show="login">
 			<!-- LOGIN FORM CODE GOES HERE -->
+			<form role="form" name="loginForm">
+				<div class="form-group">
+			    	<label>Email address</label>
+			    	<input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Enter email" ng-model="user.email" required>
+			    	<p class='error' ng-if='loginForm.inputEmail.$error.required && loginForm.inputEmail.$dirty'>
+			    		Email is required.
+            		</p>
+			  	</div>
+			  	<div class="form-group">
+			    	<label>Password</label>
+			    	<input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password" ng-model="user.password" required>
+			    	<p class='error' ng-if='loginForm.inputPassword.$error.required && loginForm.inputPassword.$dirty'>
+			    		Password is required.
+            		</p>
+			  	</div>
+			  	<button type="submit" class="btn btn-default" ng-disabled="loginForm.$invalid">Submit</button>
+			</form>
 		</div>
 
 		<!-- Signup Form -->
-		<div class='login-signup-form' ng-controller='signupCtrl'>
+		<div class='login-signup-form' ng-controller='signupCtrl' ng-show="signup">
 		<!-- SIGNUP FORM CODE GOES HERE -->
+		<form role="form" name="signupForm">
+		  	<div class="form-group">
+		    	<label>Name</label>
+		    	<input type="text" class="form-control" id="inputFirstName" name="inputFirstName" placeholder="Enter first name" ng-model="user.firstName" required>
+		    	<input type="text" class="form-control" id="inputLastName" name="inputLastName" placeholder="Enter last name" ng-model="user.lastName" required>
+		    	<p class='error' ng-if='signupForm.inputLastName.$error.required && signupForm.inputLastName.$dirty'>
+			    	Last name is required.
+            	</p>
+		    	<p class='error' ng-if='signupForm.inputFirstName.$error.required && signupForm.inputFirstName.$dirty'>
+			    	First name is required.
+            	</p>
+		  	</div>
+		  	<div class="form-group">
+		    	<label>Username</label>
+		    	<input type="text" class="form-control" id="inputUsername" name="inputUsername" placeholder="Enter username" ng-model="user.username" required>
+		    	<p class='error' ng-if='signupForm.inputUsername.$error.required && signupForm.inputUsername.$dirty'>
+			    	Username is required.
+            	</p>
+		  	</div>
+		  	<div class="form-group">
+		    	<label>Email address</label>
+		    	<input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Enter email" ng-model="user.email" required>
+		    	<p class='error' ng-if='signupForm.inputEmail.$error.required && signupForm.inputEmail.$dirty'>
+			    	Email is required.
+            	</p>
+		  	</div>
+		  	<div class="form-group">
+		    	<label>Password</label>
+		    	<input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password" ng-model="user.password" required ng-minlength=5 ng-maxlength=15>
+		    	<p class='error' ng-if='signupForm.inputPassword.$error.required && signupForm.inputPassword.$dirty'>
+			    	Password is required.
+            	</p>
+		    	<p class='help-block' ng-if='signupForm.inputPassword.$invalid && signupForm.inputPassword.$dirty'>
+			    	Password must be between five and fifteen characters long.
+            	</p>
+		  	</div>
+		  	<div class="form-group">
+		    	<label>Confirm Password</label>
+		    	<input type="password" class="form-control" id="inputPassword" placeholder="Confirm password" ng-model="user.confirm" required ng-minlength=5 ng-maxlength=15>
+		  	</div>
+		  	<button type="submit" class="btn btn-default" ng-disabled="signupForm.$invalid">Submit</button>
+		</form>
+
 		</div>
 
 		
